@@ -41,7 +41,6 @@ EXTRAFLAGS += -DPX4_GIT_VERSION="\"$(PX4_GIT_VERSION)\""
 EXTRAFLAGS += -DUAVCAN=1
 
 # we have different config files for V1 and V2
-PX4_V1_CONFIG_FILE=$(MK_DIR)/PX4/config_px4fmu-v1_APM.mk
 PX4_V2_CONFIG_FILE=$(MK_DIR)/PX4/config_px4fmu-v2_APM.mk
 
 SKETCHFLAGS=$(SKETCHLIBINCLUDES) -DARDUPILOT_BUILD -DTESTS_MATHLIB_DISABLE -DCONFIG_HAL_BOARD=HAL_BOARD_PX4 -DSKETCHNAME="\\\"$(SKETCH)\\\"" -DSKETCH_MAIN=ArduPilot_main -DAPM_BUILD_DIRECTORY=APM_BUILD_$(SKETCH)
@@ -102,7 +101,7 @@ px4-v2-upload: px4-v2
 	$(RULEHDR)
 	$(v) $(PX4_MAKE) px4fmu-v2_APM upload
 
-px4-upload: px4-v1-upload
+px4-upload: px4-v2-upload
 
 px4-archives-clean:
 	$(v) /bin/rm -rf $(PX4_ROOT)/Archives
