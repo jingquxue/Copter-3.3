@@ -1,9 +1,9 @@
 [submodule "modules/PX4Firmware"]
 	path = modules/PX4Firmware
-	url = git@192.168.0.200:temp/PX4Firmware.git
+	url = https://github.com/jingquxue/PX4Firmware.git
 [submodule "modules/PX4NuttX"]
 	path = modules/PX4NuttX
-	url = git@192.168.0.200:temp/PX4Nuttx.git
+	url = https://github.com/jingquxue/PX4Nuttx.git
 [submodule "modules/uavcan"]
 	path = modules/uavcan
-	url = git@192.168.0.200:temp/uavcan.git
+	url = https://github.com/jingquxue/uavcan.git
