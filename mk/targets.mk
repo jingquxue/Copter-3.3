@@ -1,70 +1,6 @@
 default: help
 
 # convenient targets for our supported boards
-sitl: HAL_BOARD = HAL_BOARD_SITL
-sitl: TOOLCHAIN = NATIVE
-sitl: all
-
-sitl-arm: HAL_BOARD = HAL_BOARD_SITL
-sitl-arm: TOOLCHAIN = RPI
-sitl-arm: all
-
-apm1: HAL_BOARD = HAL_BOARD_APM1
-apm1: TOOLCHAIN = AVR
-apm1: all
-
-apm1-1280: HAL_BOARD = HAL_BOARD_APM1
-apm1-1280: TOOLCHAIN = AVR
-apm1-1280: all
-apm1-1280: BOARD = mega
-
-apm2: HAL_BOARD = HAL_BOARD_APM2
-apm2: TOOLCHAIN = AVR
-apm2: all
-
-flymaple: HAL_BOARD = HAL_BOARD_FLYMAPLE
-flymaple: TOOLCHAIN = ARM
-flymaple: all
-flymaple-hil: EXTRAFLAGS += "-DHIL_MODE=HIL_MODE_ATTITUDE "
-flymaple-hil: flymaple
-
-linux: HAL_BOARD = HAL_BOARD_LINUX
-linux: TOOLCHAIN = NATIVE
-linux: all
-
-erle: HAL_BOARD = HAL_BOARD_LINUX
-erle: TOOLCHAIN = BBONE
-erle: all
-
-zynq: HAL_BOARD = HAL_BOARD_LINUX
-zynq: TOOLCHAIN = ZYNQ
-zynq: all
-zynq-hil: EXTRAFLAGS += "-DHILMODE=HIL_MODE_ATTITUDE -DHIL_MODE=HIL_MODE_SENSORS "
-zynq-hil : zynq
-
-pxf: HAL_BOARD = HAL_BOARD_LINUX
-pxf: TOOLCHAIN = BBONE
-pxf: all
-
-bebop: HAL_BOARD = HAL_BOARD_LINUX
-bebop: TOOLCHAIN = BBONE
-bebop: all
-
-navio: HAL_BOARD = HAL_BOARD_LINUX
-navio: TOOLCHAIN = RPI
-navio: all
-
-bbbmini: HAL_BOARD = HAL_BOARD_LINUX
-bbbmini: TOOLCHAIN = BBONE
-bbbmini: all
-
-empty: HAL_BOARD = HAL_BOARD_EMPTY
-empty: TOOLCHAIN = AVR
-empty: all
-
-# cope with HIL targets
-%-hil: EXTRAFLAGS += "-DHIL_MODE=HIL_MODE_SENSORS "
-%-hilsensors: EXTRAFLAGS += "-DHIL_MODE=HIL_MODE_SENSORS "
 
 # cope with OBC targets
 %-obc: EXTRAFLAGS += "-DOBC_FAILSAFE=ENABLED "
@@ -103,11 +39,6 @@ USED_FRAMES := $(foreach frame,$(FRAMES), $(findstring $(frame), $(MAKECMDGOALS)
 $(foreach board,$(USED_BOARDS),$(eval $(call board_template,$(board))))
 $(foreach board,$(USED_BOARDS),$(foreach frame,$(USED_FRAMES),$(eval $(call frame_template,$(board),$(frame)))))
 
-apm2beta: EXTRAFLAGS += "-DAPM2_BETA_HARDWARE "
-apm2beta: apm2
-
-sitl-mount: EXTRAFLAGS += "-DMOUNT=ENABLED"
-sitl-mount: sitl
 
 .PHONY: etags
 etags:
